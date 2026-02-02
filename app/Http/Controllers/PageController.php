@@ -8,7 +8,13 @@ class PageController extends Controller
 {
     public function home()
     {
-        return redirect()->route('products.show', ['id' => 1]);
+        $boutique = [
+            'name' => 'Solid Snow Culture',
+            'productNumber' => 123,
+            'shopState' => true
+        ];
+
+      return view('home', ['boutique => $boutique']);
     }
 
     public function about()
