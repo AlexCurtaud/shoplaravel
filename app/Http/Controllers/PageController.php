@@ -9,16 +9,16 @@ class PageController extends Controller
     public function home()
     {
         $boutique = [
-            'name' => 'Solid Snow Culture',
+            'name' => 'Solid Snow Shop',
             'productNumber' => 123,
             'shopState' => true
         ];
 
-      return view('home', ['boutique => $boutique']);
+      return view('home', ['boutique' => $boutique]);
     }
 
-    public function about()
-    {
-        return "An original shop where you will find core equipment that relate freeski and snowboard culture";
+    public function contact() {
+        return view('contact');
     }
 }
+
