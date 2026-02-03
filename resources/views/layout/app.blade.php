@@ -17,6 +17,21 @@
                 <li><a href="/about">About</a></li>
                 <li><a href="{{ route('contact.index') }}">Contact</a></li>
             </ul>
+            {{-- <ul>
+                @auth
+                    <li>
+                        <a href="{{ route('profile') }}">Mon Profil</a>
+                    @endauth
+                </li>
+                @guest
+                    <li>
+                        <a href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('register') }}">Register</a>
+                    </li>
+                @endguest
+            </ul> --}}
         </nav>
     </header>
     <main>
