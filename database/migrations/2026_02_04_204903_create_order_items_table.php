@@ -6,17 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = 'mysql';
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('category', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->string('name', '70');
-            $table->string('slug')->unique();
-            $table->string('description');
+            $table->foreignId('order_id')->constrained();
+            $table->foreignId('product_id')->constrained();
+            $table->integer('quantity');
+            $table->decimal('unit_price', 8, 2);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category');
+        Schema::dropIfExists('order_items');
     }
 };
