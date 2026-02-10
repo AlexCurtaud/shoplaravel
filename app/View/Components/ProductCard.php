@@ -9,12 +9,11 @@ use Illuminate\View\Component;
 class ProductCard extends Component
 {
     public function __construct(
-        public ?int $id = null,
+        public ?int $id,
         public string $name,
-        public float $price)
-    {
-        
-    }
+        public float $price,
+        public string $stock,
+        public ?string $image) {}
 
     /**
      * Get the view / contents that represent the component.

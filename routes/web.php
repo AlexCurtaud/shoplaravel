@@ -25,13 +25,14 @@ Route::prefix('admin')->group(function () {
         ->name('usersList');
 });
 
-Route::resource('category', CategoryController::class);
+Route::resource('categories', CategoryController::class);
+
+Route::resource('products', ProductController::class);
+
+Route::resource('contacts', ContactController::class);
 
 // Route Fall Back
 Route::fallback(function() {
     return 'Erreur 404 - Page non trouvée ! <a href="/">Retour à l\'acceuil</a>';
 });
 
-Route::resource('products', ProductController::class);
-
-Route::resource('contact', ContactController::class);
