@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -35,7 +37,9 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $category = Category::where('id', $id)->with('products')->first();
+        $products = Product::where('category_id', $id)->with('category')->get();
+        return view('categories.show', compact('category', 'products'));
     }
 
     /**

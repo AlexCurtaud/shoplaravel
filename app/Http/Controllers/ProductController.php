@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('category')->get();
 
         return view('products.index', compact('products'));
     }
@@ -22,7 +23,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categories = Category::all();
+
+        return view('products.create', compact('categories'));
     }
 
     /**
@@ -67,9 +70,10 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        $products = Product::find($id);
+        $product = Product::where('id', $id)->with('category')->first();
+        $categories = Category::all();
 
-        return view('products.edit', ['product' => $products]);
+        return view('products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -86,9 +90,10 @@ class ProductController extends Controller
                     'active' => $request->input('active', 0),
                     'category_id' => $request->category_id,
                 ]);
+
             if ($request->hasFile('image')) {
-                $path = $request->file('image')->store('products', 'public');
-                $product->image = $path;
+                $product = Product::find($id)->update(
+                    ['image' => $request->file('image')->store('products', 'public')]);
             } else {
             }
 

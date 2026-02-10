@@ -1,17 +1,11 @@
 @extends('layout.app')
 
-@section('title', 'Products - Solid Snow Shop')
-
-@if (session('success'))
-    <script>
-        alert('{{ session('success') }}')
-    </script>
-@endif
+@section('title', 'Category : {{ $category->name }}')
 
 @section('content')
-    <h1>Products</h1>
+    <h1>{{ $category->name }}</h1>
     @forelse ($products as $product)
-            <x-product-card :product="$product"/>
+        <x-product-card :product="$product"/>
         <form action="{{ route('products.destroy', $product) }}" method="POST">
             @method('DELETE')
             @csrf
