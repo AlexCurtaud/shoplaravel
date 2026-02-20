@@ -24,6 +24,7 @@ The focus points were :
 
 ## Organisation
 MVC Model / Laravel Framework / No Frontend framework or library yet
+**The code needs to be more documented, working on it.**
 
 ## Want to use this project ?
 You will need at least to :
